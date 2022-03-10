@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-const users = [
+let users = [
   {
     id: 1,
     name: "James Berry",
@@ -61,6 +61,12 @@ router.get("/:id", (req, res) => {
   res.send(foundUser);
 });
 
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
 
+  users = users.filter((user) => user.id != id);
+
+  res.send(`User with the id ${id} deleted from the database.`);
+});
 
 export default router;
